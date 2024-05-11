@@ -1,0 +1,200 @@
+.gradient-background {
+    background: linear-gradient(300deg, #2c3531, #116466, #d9b08c);
+    background-size: 180% 180%;
+    animation: gradient-animation 18s ease infinite;
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  /* Bawah untuk glitch code. START*/
+  .glitch {
+    color: var(--color);
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .right {
+    text-align: right;
+    width: 100%;
+  }
+  
+  .stack {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+  .stack span {
+    font-weight: bold;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    font-size: 4rem;
+    --stack-height: calc(100% / var(--stacks) - 1px);
+    --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+    --clip-top: calc(var(--stack-height) * var(--index));
+    --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+    clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+    animation: stack 340ms cubic-bezier(.46,.29,0,1.24) 1 backwards calc(var(--index) * 120ms), glitch 2s ease infinite 2s alternate-reverse;
+  }
+  
+  .stack span:nth-child(odd) { --glitch-translate: 8px; }
+  .stack span:nth-child(even) { --glitch-translate: -8px; }
+  
+  @keyframes stack {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%);
+      text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+    };
+    60% {
+      opacity: 0.5;
+      transform: translateX(50%);
+    }
+    80% {
+      transform: none;
+      opacity: 1;
+      text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+    }
+    100% {
+      text-shadow: none;
+    }
+  }
+  
+  @keyframes glitch {
+    0% {
+      text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+      transform: translate(var(--glitch-translate));
+    }
+    2% {
+      text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+    }
+    4%, 100% {  text-shadow: none; transform: none; }
+  }
+  /* END Glitch */
+body {
+    font-family: "Poppins", sans-serif;
+    min-height: 95vh;
+    width: 100%;
+}
+header{
+    width: 100%;
+    text-align: center;
+}
+h1{
+    margin: 0px;
+    color: #d9b08c;
+    text-shadow: 2px 2px black
+}
+
+.section-1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.profileImage {
+    background: linear-gradient(to right,rgb(54, 54, 54),rgb(32, 32, 32));
+    margin-top: 20px;
+    max-width: 140px;
+    border-radius: 50%;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.329);
+}
+p.intro{
+  width: 55%;
+  font-size: 30px;
+}
+
+img.portfolio-img{
+    width: 400px;
+    border: 5px solid #2c3531;
+    border-radius: 15%;
+}
+
+.li-portfolio{
+ list-style: none;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-around;
+}
+
+h3{
+    text-align: center;
+    font-size: 2.2rem;
+    color: #d9b08c;
+    text-shadow: 2px 2px black
+}
+h4{
+    font-size: 1.8rem;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: black;
+    background-color: #ffcb9a;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .button:hover {background-color: #d9b08c}
+  
+  .button:active {
+    background-color: #d9b08c;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+footer {
+    color: white;
+    text-align: center;
+}
+
+@media (min-width:319px) and (max-width:820px) {
+    
+    p.intro{
+        width: 100%;
+        height: auto;
+    }
+
+    img.portfolio-img{
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+        border-radius: 0%;
+    }
+    .profileImage {
+        width: 100%;
+        height: auto;
+    }
+    .li-portfolio{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+       }
+    h2,h3, .stack span{
+        font-size: 45px;
+    }
+    h4{
+        font-size: 35px;
+    }
+    body{
+        margin-top: 0;
+        margin-left: 0;
+    }
+}
